@@ -1,3 +1,9 @@
+@mixin media-mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
 body {
   background-color: #747479;
 }
@@ -11,20 +17,32 @@ body {
   width: 615px;
   height: 55px;
   transform: skew(-50deg);
+  @include media-mobile() {
+    padding-left: 0;
+    width: fit-content;
+    font-size: 14px;
+  }
 
   &__input-wrapper {
     background-color: rgba(255, 255, 255, 0.6);
     padding: 18px 58px 20px 52px;
+    @include media-mobile() {
+      padding: 18px 10px 20px 28px;
+    }
   }
 
   &__input {
-    opacity: none;
     border: none;
     transform: skew(50deg);
     min-width: 340px;
     margin-left: -26px;
     font-size: inherit;
     background-color: transparent;
+    @include media-mobile() {
+      margin-left: 0;
+      min-width: 150px;
+      width: 150px;
+    }
 
     &:focus {
       outline: none;
@@ -40,10 +58,24 @@ body {
     border-color: #ffffff;
     text-transform: uppercase;
     z-index: 1;
+    @include media-mobile() {
+      padding: 4px 40px 6px 40px;
+    }
     span {
       display: inline-block;
       transform: skew(50deg);
       color: #ffffff;
     }
+    @include media-mobile() {
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .form,
+  .form__input,
+  .form__button span {
+    transform: none;
   }
 }
